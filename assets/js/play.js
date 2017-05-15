@@ -10,6 +10,8 @@ var Play = {
         // In our case, that's just two squares - one for the snake body and one for the apple.
         game.load.image('play_background', './assets/images/play_background.jpg');
         game.load.image('apple', './assets/images/apple.png');
+
+
     },
 
     create : function() {

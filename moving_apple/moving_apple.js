@@ -13,7 +13,7 @@ function preload() {
 function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    background = game.add.tileSprite(0, 0, game_width, game_height, 'background');
+    background = game.add.sprite(0, 0, 'background');
     background.width=game_width;background.height=game_height;
 
     game.physics.arcade.gravity.y = 500;
