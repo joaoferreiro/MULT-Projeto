@@ -8,13 +8,14 @@ var Play = {
     preload : function() {
         // Here we load all the needed resources for the level.
         // In our case, that's just two squares - one for the snake body and one for the apple.
-        game.load.image('snake', './assets/images/snake.png');
+        game.load.image('play_background', './assets/images/play_background.jpg');
         game.load.image('apple', './assets/images/apple.png');
     },
 
     create : function() {
 
-
+        var play_background = this.add.sprite(0, 0, 'play_background');
+        play_background.width = game_width;play_background.height = game_height;
         // By setting up global variables in the create function, we initialise them on game start.
         // We need them to be globally available so that the update function can alter them.
 
@@ -83,7 +84,6 @@ var Play = {
         // The higher the score, the higher the game speed, with a maximum of 10;
         speed = Math.min(10, Math.floor(score/5));
         // Update speed value on game screen.
-        speedTextValue.text = '' + speed;
 
         // Since the update function of Phaser has an update rate of around 60 FPS,
         // we need to slow that down make the game playable.
@@ -137,7 +137,6 @@ var Play = {
 
             snake.push(lastCell);
             firstCell = lastCell;
-
         }
     
 
@@ -150,10 +149,10 @@ var Play = {
             this.appleCollision();
 
             // Check for collision with self. Parameter is the head of the snake.
-            this.selfCollision(firstCell);
+            //this.selfCollision(firstCell);
 
             // Check with collision with wall. Parameter is the head of the snake.
-            this.wallCollision(firstCell);
+            //this.wallCollision(firstCell);
     },
 
     appleCollision: function() {
@@ -183,7 +182,7 @@ var Play = {
 
     },
 
-    selfCollision: function(head) {
+   selfCollision: function(head) {
 
         // Check if the head of the snake overlaps with any part of the snake.
         for(var i = 0; i < snake.length - 1; i++){
@@ -215,11 +214,12 @@ var Play = {
         // X is between 0 and 585 (39*15)
         // Y is between 0 and 435 (29*15)
 
-        var randomX = Math.floor(Math.random() * 40 ) * squareSize,
-            randomY = Math.floor(Math.random() * 30 ) * squareSize;
+        var randomX = Math.floor(Math.random() * game_width);
+            randomY = Math.floor(Math.random() * game_height);
 
         // Add a new apple.
         apple = game.add.sprite(randomX, randomY, 'apple');
+        apple.width=15;apple.height=15;
     }
 
 };
