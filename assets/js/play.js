@@ -1,5 +1,4 @@
-
-var updateDelay = 0, player, blocks, cursors;
+var updateDelay = 0, player, blocks, cursors, foods;
 
 var Play = {
 	preload: function(){
@@ -18,6 +17,8 @@ var Play = {
 
 		this.blockWidth = this.game.cache.getImage('block').width;
 		this.blockHeight = this.game.cache.getImage('block').height;
+		//this.foodWidth = this.game.cache.getImage('food').width;
+		this.foodHeight = this.game.cache.getImage('food').height;
 
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -25,12 +26,16 @@ var Play = {
 		this.blocks.enableBody = true;
 		this.blocks.createMultiple(250, 'block');
 
+		this.foods = this.game.add.group();
+		this.foods.enableBody = true;
+		this.foods.createMultiple(50, 'food1');
+
 		this.timer = game.time.events.loop(1500,this.addPlat, this);
 
 		this.spacing = 200;
 		this.startPlats();
 
-		this.createPlayer();
+		this.startPlayer();
 
 		this.cursors = this.game.input.keyboard.createCursorKeys();
 	},
@@ -44,7 +49,7 @@ var Play = {
 			this.gameOver();
 
 		if(this.cursors.up.isDown && this.player.body.wasTouching.down)
-			this.player.body.velocity.y = -1000;
+			this.player.body.velocity.y = -850;
 
 		if(this.cursors.left.isDown)
 			this.player.body.velocity.x = -500;
@@ -52,6 +57,9 @@ var Play = {
 		if(this.cursors.right.isDown)
 			this.player.body.velocity.x = 500;
 
+		if(updateDelay % 50 == 0){
+			this.addFood();
+		}
 		updateDelay++;
 	},
 
@@ -89,9 +97,8 @@ var Play = {
 			this.addPlat(y);
 	},
 
-	createPlayer: function(){
+	startPlayer: function(){
 		this.player = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'player2');
-		
 		this.player.anchor.setTo(0.5,1);
 		this.game.physics.arcade.enable(this.player);
 		this.player.body.gravity.y = 2000;
@@ -99,7 +106,23 @@ var Play = {
 		this.player.body.bounce.y = 0.1;
 	},
 
+	addFood: function(){
+		var food = this.foods.getFirstDead();
+		var random = this.game.rnd.integerInRange(0,game_width);
+
+		food.reset(random,this.foodHeight);
+		food.body.velocity.y = 150;
+		food.body.immovable = true;
+
+		food.checkWorldBounds = true;
+		food.outOfBoundsKill = true;	
+	},
+
+	startScore: function(){
+
+	},
+
 	gameOver: function(){
-		this.game.state.start('Menu');
+		this.game.state.start('Play');
 	}
 }
