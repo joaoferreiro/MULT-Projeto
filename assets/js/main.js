@@ -1,4 +1,4 @@
-var game, game_width=400, game_height=300;
+var game, game_width=600, game_height=400;
 
 // Create a new game instance 600px wide and 450px tall:
 
