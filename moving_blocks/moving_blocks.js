@@ -15,20 +15,17 @@ function create() {
 
 	updateDelay = 0;
 
-	var rand = Math.floor(Math.random() * 15);
-	var rand2 = Math.floor(Math.random() * 10);
-
-
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    game.physics.arcade.gravity.y = 20;
+    
 
     background = game.add.sprite(0, 0, 'background');
     background.width=game_width;background.height=game_height;
 
     balls = game.add.group();
 
-    balls.createMultiple(500, 'platform', 1, false);
+    balls.createMultiple(150, 'platform', 1, false);
+    game.physics.arcade.gravity.y = 15;
     //atari = game.add.sprite(200, 450, 'atari');
 
     //  Enable physics on everything added to the world so far (the true parameter makes it recurse down into children)
@@ -85,10 +82,10 @@ function fire(){
 
 
 function update(){
-	if(updateDelay % 50 == 0){
-		var random = game.rnd.integerInRange(0,10);
+	if(updateDelay % 90 == 0){
+		var random = game.rnd.integerInRange(0,4);
 	    for (var i = 1; i < random; i++)
-	    	game.time.events.loop(1500, fire, this);
+	    	game.time.events.loop(Phaser.Timer.SECOND *5, fire);
 
 	
 	}
