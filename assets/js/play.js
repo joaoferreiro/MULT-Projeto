@@ -1,7 +1,12 @@
-    var snake, apple, squareSize, score, speed,
-    updateDelay, direction, new_direction,
-    addNew, cursors, scoreTextValue, speedTextValue, 
-    textStyle_Key, textStyle_Value;
+var Play = {
+
+    preload: function(){
+        game.load.image('play_background', '/assets/images/play_background.jpg');
+        game.load.image('block', '/assets/images/block.png');
+        game.load.image('player', '/assets/images/player.png');
+    }
+}
+
 
 var Play = {
 
@@ -9,9 +14,7 @@ var Play = {
         // Here we load all the needed resources for the level.
         // In our case, that's just two squares - one for the snake body and one for the apple.
         game.load.image('play_background', './assets/images/play_background.jpg');
-        game.load.image('apple', './assets/images/apple.png');
-
-
+        
     },
 
     create : function() {
