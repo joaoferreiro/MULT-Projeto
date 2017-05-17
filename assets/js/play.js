@@ -94,6 +94,9 @@ var Play = {
 				this.player.frame = 4;
 		}
 
+		if(!(this.cursors.right.isDown || this.cursors.left.isDown || this.cursors.up.isDown))
+			this.player.frame = 0;
+
 		if(updateDelay % 30 == 0){
 			this.addFood();
 			this.HP -= 1;
