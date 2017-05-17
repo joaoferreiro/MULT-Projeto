@@ -1,4 +1,4 @@
-var game, game_width=400, game_height=650;
+var game, game_width=400, game_height=800;
 
 game = new Phaser.Game(game_width, game_height, Phaser.CANVAS, 'phaser-example');
 
