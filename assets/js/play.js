@@ -1,4 +1,4 @@
-var updateDelay = 0, player, blocks, cursors, foods;
+var updateDelay = 0, player, blocks, cursors, foods, score;
 
 var Play = {
 	preload: function(){
@@ -38,12 +38,16 @@ var Play = {
 		this.startPlayer();
 
 		this.cursors = this.game.input.keyboard.createCursorKeys();
+
+		this.score = 0;
+
+		//this.startScore();		
 	},
 
 	update: function() {
 		this.player.body.velocity.x = 0;
 
-		this.game.physics.arcade.collide(this.player, this.blocks);
+		this.game.physics.arcade.collide(this.player, this.blocks, this.incrementScore);
 
 		if(this.player.body.position.y >= this.game.world.height - this.player.body.height)
 			this.gameOver();
@@ -61,6 +65,7 @@ var Play = {
 			this.addFood();
 		}
 		updateDelay++;
+		//this.incrementScore();
 	},
 
 	addBlock: function(x,y){
@@ -119,7 +124,15 @@ var Play = {
 	},
 
 	startScore: function(){
+		var scoreFont = '50px Helvetica'
+		this.score = this.game.add.text((50,100, "0", {font:scoreFont, fill: "#000"}))
+		this.score.anchor.setTo(0.5,0.5);
+		this.score.align = 'center';
+	},
 
+	incrementScore: function(){
+		this.score++;
+		this.score.text = this.score
 	},
 
 	gameOver: function(){
