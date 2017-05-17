@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+var updateDelay = 0, player, blocks, cursors, foods, score;
+=======
 var bg, updateDelay = 0, player, blocks, cursors, foods, score, HP, textScore, textHP, index;
+>>>>>>> cd3b099af372f530ec8e473de586c7a670fe0c17
 
 var Play = {
 	preload: function(){
@@ -45,6 +49,13 @@ var Play = {
 		//Inicializacao do jogador
 		this.startPlayer();
 
+<<<<<<< HEAD
+		this.cursors = this.game.input.keyboard.createCursorKeys();
+
+		this.score = 0;
+
+		//this.startScore();		
+=======
 		//Criacao do texto
 		textScore = game.add.text(10, 50, 'Score: 0\nHealthPoints: 50');
 		textScore.anchor.set(0);
@@ -53,17 +64,22 @@ var Play = {
 	    textScore.fontSize = 25;
 	    textScore.fill = '#fff';
 
+>>>>>>> cd3b099af372f530ec8e473de586c7a670fe0c17
 	},
 
 	update: function() {
 		this.player.body.velocity.x = 0;
 
+<<<<<<< HEAD
+		this.game.physics.arcade.collide(this.player, this.blocks, this.incrementScore);
+=======
 		//Atualiza texto
 		textScore.text = 'Score: '+this.score+'\nHealthPoints: '+this.HP;
 		
 		//Verifica colisoes
 		this.game.physics.arcade.collide(this.player, this.blocks);
 		this.game.physics.arcade.overlap(this.player, this.foods, this.killFood, null, this);
+>>>>>>> cd3b099af372f530ec8e473de586c7a670fe0c17
 
 		//Game Over
 		if(this.player.body.position.y >= this.game.world.height - this.player.body.height)
@@ -102,6 +118,7 @@ var Play = {
 			this.HP -= 1;
 		}
 		updateDelay++;
+		//this.incrementScore();
 	},
 
 
@@ -187,11 +204,24 @@ var Play = {
 		food.outOfBoundsKill = true;	
 	},
 
+<<<<<<< HEAD
+	startScore: function(){
+		var scoreFont = '50px Helvetica'
+		this.score = this.game.add.text((50,100, "0", {font:scoreFont, fill: "#000"}))
+		this.score.anchor.setTo(0.5,0.5);
+		this.score.align = 'center';
+	},
+
+	incrementScore: function(){
+		this.score++;
+		this.score.text = this.score
+=======
 	killFood: function(player, food){
 		//Quando o jogador colide com a comida recebe pontos e ganha vida
 		food.kill();
 		this.score++;
 		this.HP += 10;
+>>>>>>> cd3b099af372f530ec8e473de586c7a670fe0c17
 	},
 
 
