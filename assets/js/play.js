@@ -3,10 +3,10 @@ var bg, updateDelay = 0, player, blocks, cursors, foods, score, HP, textScore, t
 var Play = {
 	preload: function(){
 		//Carregamento de ficheiros necessarios
-		game.load.image('bg','assets/images/play_background.jpg');
-		game.load.image('block','assets/images/block.png');
-		game.load.spritesheet('player', 'assets/images/player.png', 52.5, 69, 6);
-		game.load.spritesheet('food','assets/images/food.png', 35, 37);
+		this.game.load.image('bg','assets/images/background.jpg');
+		this.game.load.image('block','assets/images/block.png');
+		this.game.load.spritesheet('player', 'assets/images/player.png', 52.5, 69, 6);
+		this.game.load.spritesheet('food','assets/images/food.png', 35, 37);
 	},
 
 	create: function(){
@@ -20,8 +20,8 @@ var Play = {
 		this.foodHeight = this.game.cache.getImage('food').height;
 
 		//Imagem de fundo
-		bg = this.add.sprite(0,0,'bg');
-		bg.width = game_width; bg.height = game_height;
+		this.bg = this.add.sprite(0,0,'bg');
+		this.bg.width = game_width; this.bg.height = game_height;
 
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 
@@ -46,12 +46,12 @@ var Play = {
 		this.startPlayer();
 
 		//Criacao do texto
-		textScore = game.add.text(10, 50, 'Score: 0\nHealthPoints: 50');
-		textScore.anchor.set(0);
-	    textScore.align = 'align-left';
-	    textScore.font = 'Arial';
-	    textScore.fontSize = 25;
-	    textScore.fill = '#fff';
+		this.textScore = game.add.text(10, 50, 'Score: 0\nHealthPoints: 50');
+		this.textScore.anchor.set(0);
+	    this.textScore.align = 'align-left';
+	    this.textScore.font = 'Arial';
+	    this.textScore.fontSize = 25;
+	    this.textScore.fill = '#fff';
 
 	},
 
@@ -59,7 +59,7 @@ var Play = {
 		this.player.body.velocity.x = 0;
 
 		//Atualiza texto
-		textScore.text = 'Score: '+this.score+'\nHealthPoints: '+this.HP;
+		this.textScore.text = 'Score: '+this.score+'\nHealthPoints: '+this.HP;
 		
 		//Verifica colisoes
 		this.game.physics.arcade.collide(this.player, this.blocks);
@@ -97,11 +97,11 @@ var Play = {
 		if(!(this.cursors.right.isDown || this.cursors.left.isDown || this.cursors.up.isDown))
 			this.player.frame = 0;
 
-		if(updateDelay % 30 == 0){
+		if(this.updateDelay % 30 == 0){
 			this.addFood();
 			this.HP -= 1;
 		}
-		updateDelay++;
+		this.updateDelay++;
 	},
 
 
@@ -125,7 +125,7 @@ var Play = {
 
 		//Propriedades de cada bloco
 		block.reset(x,y);
-		block.body.velocity.y = 100+index;
+		block.body.velocity.y = 100+this.index;
 		block.body.immovable = true;
 		block.alpha = rand;
 		block.checkWorldBounds = true;
@@ -141,18 +141,18 @@ var Play = {
 			y = -this.blockHeight;
 
 		//Niveis de dificuldade: velocidade das plataformas
-		index = 0;
+		this.index = 0;
 		if(this.score > 50)
-			index = 10;
+			this.index = 10;
 		if(this.score > 100)
-			index = 20;
+			this.index = 20;
 		if(this.score > 250)
-			index = 25;
+			this.index = 25;
 
 		//Adiciona um bloco onde nao sera buraco
 		for (var i = 0; i < platSize; i++){
 			if (!(i <= hole + rand && i > hole))
-				this.addBlock(i * this.blockWidth, y,index);
+				this.addBlock(i * this.blockWidth, y,this.index);
 		}
 		this.score++;
 	},

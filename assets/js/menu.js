@@ -1,69 +1,68 @@
-var bg, button1, button2, button3, button4, logo;
+var bg, logo, button1, button2, button3, button4, textButton1, textButton2, textButton3, music;
 
 var Menu = {
 	
 	preload: function(){
-		this.game.load.image('bg', 'assets/images/play_background.jpg');
+		//Carregamento de ficheiros necessarios
+		this.game.load.image('bg', 'assets/images/background.jpg');
 		this.game.load.image('logo', 'assets/images/logo.png');
 		this.game.load.image('button', 'assets/images/button.png');
+		this.game.load.image('sound', 'assets/images/sound.png')
+		this.game.load.image('bar', 'assets/images/bar.png');
+		this.game.load.audio('music', 'assets/audio/music.mp3');
 	},
 
 	create: function(){
-		bg = this.add.sprite(0, 0, 'bg');
-		bg.width = game_width; bg.height = game_height;
+		//Imagem de fundo
+		this.bg = this.add.sprite(0, 0, 'bg');
+		this.bg.width = game_width; this.bg.height = game_height;
 
-		logo = this.add.sprite(15,50, 'logo');
-		logo.width = 400; logo.height = 200;
+		//Logotipo
+		this.logo = this.add.sprite(15,50, 'logo');
+		this.logo.width = 400; this.logo.height = 200;
 
-		button1 = this.add.button(75,300 , 'button', this.startGame, this);
-		button1.width = 250; button1.height = 50;
-
-		textButton1 = game.add.text(this.game.world.centerX, 328, 'Play');
-		textButton1.anchor.set(0.5);
-	    textButton1.align = 'center';
-	    textButton1.font = 'Arial';
-	    textButton1.fontSize = 25;
-	    textButton1.fill = '#000';
-
-		button2 = this.add.button(75, 375, 'button', this.startOptions, this);
-		button2.width = 250; button2.height = 50;
-
-		textButton2 = game.add.text(this.game.world.centerX, 403, 'Options');
-		textButton2.anchor.set(0.5);
-	    textButton2.align = 'center';
-	    textButton2.font = 'Arial';
-	    textButton2.fontSize = 25;
-	    textButton2.fill = '#000';
+		//Botao Play
+		this.button1 = this.add.button(75,300 , 'button', this.startGame, this);
+		this.button1.width = 250; this.button1.height = 50;
+		//Texto Play
+		this.textButton1 = game.add.text(this.game.world.centerX, 328, 'Play');
+		this.textButton1.anchor.set(0.5);
+	    this.textButton1.align = 'center';
+	    this.textButton1.font = 'Arial';
+		this.textButton1.fontSize = 25;
+	    this.textButton1.fill = '#000';
 	    
-	    button3 = this.add.button(75, 450, 'button', this.startHelp, this);
-		button3.width = 250; button3.height = 50;
-
-		textButton3 = game.add.text(this.game.world.centerX, 478, 'Help');
-		textButton3.anchor.set(0.5);
-	    textButton3.align = 'center';
-	    textButton3.font = 'Arial';
-	    textButton3.fontSize = 25;
-	    textButton3.fill = '#000';
+	    //Botao Help
+	    this.button2 = this.add.button(75, 375, 'button', this.startHelp, this);
+		this.button2.width = 250; this.button2.height = 50;
+		//Texto Help
+		this.textButton2 = game.add.text(this.game.world.centerX, 403, 'Help');
+		this.textButton2.anchor.set(0.5);
+	    this.textButton2.align = 'center';
+	    this.textButton2.font = 'Arial';
+	    this.textButton2.fontSize = 25;
+	    this.textButton2.fill = '#000';
 		
-		button4 = this.add.button(75, 525, 'button', this.startAbout, this);
-		button4.width = 250; button4.height = 50;
-		textButton = game.add.text(this.game.world.centerX, 553, 'About');
+		//Botao About
+		this.button3 = this.add.button(75, 450, 'button', this.startAbout, this);
+		this.button3.width = 250; this.button3.height = 50;
+		//Texto About
+		this.textButton3 = game.add.text(this.game.world.centerX, 478, 'About');
+		this.textButton3.anchor.set(0.5);
+	    this.textButton3.align = 'center';
+	    this.textButton3.font = 'Arial';
+	    this.textButton3.fontSize = 25;
+	    this.textButton3.fill = '#000';
 
-		textButton.anchor.set(0.5);
-	    textButton.align = 'center';
-	    textButton.font = 'Arial';
-	    textButton.fontSize = 25;
-	    textButton.fill = '#000';
-
-		 
-		 
+		this.button4 = this.add.button(350,15,'sound', this.handleSound, this);	
+		this.button4.width = 40; this.button4.height = 40;
+		this.music = game.add.audio('music');
+    	this.music.play();
+    	//this.music.stop();
 	},
+
 	startGame: function(){
 		this.state.start('Play');
-	},
-
-	startOptions: function(){
-		this.state.start('Options');
 	},
 
 	startHelp: function(){
@@ -72,6 +71,12 @@ var Menu = {
 
 	startAbout: function(){
 		this.state.start('About')
-	}
+	},
 
+	handleSound: function(){
+		if(this.game.sound.mute)
+			this.game.sound.mute = false;
+		else
+			this.game.sound.mute = true;
+	}
 }
