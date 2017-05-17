@@ -46,7 +46,8 @@ var Play = {
 
 		//Nova plataforma criada a cada 2s
 		this.timer = game.time.events.loop(2000,this.addPlat, this);
-
+		this.timer = game.time.events.loop(2000, this.incrementScore, this);
+		
 		//Inicializacao do jogador
 		this.startPlayer();
 
@@ -106,6 +107,14 @@ var Play = {
 		if(!(this.cursors.right.isDown || this.cursors.left.isDown || this.cursors.up.isDown))
 			this.player.frame = 0;
 
+		//Score color
+		if(this.HP < 25 || this.HP > 75){
+			this.textScore.fill = '#ff0000';
+		}
+		else 
+			this.textScore.fill = '#ffffff';
+
+		//Atualizaçao variaveis
 		if(this.updateDelay % 30 == 0){
 			this.addFood();
 			this.HP -= 1;
@@ -163,7 +172,6 @@ var Play = {
 			if (!(i <= hole + rand && i > hole))
 				this.addBlock(i * this.blockWidth, y,this.index);
 		}
-		this.score++;
 	},
 
 	startPlats: function(){
@@ -199,9 +207,13 @@ var Play = {
 	killFood: function(player, food){
 		//Quando o jogador colide com a comida recebe pontos e ganha vida
 		food.kill();
-		this.score++;
+		this.incrementScore();
 		this.HP += 10;
 		this.hitSound.play();
+	},
+
+	incrementScore: function(){
+		this.score++;
 	},
 
 	gameOver: function(option){

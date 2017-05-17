@@ -3,22 +3,27 @@ var gameOverText, button1, button2;
 var GameOver = {
 	preload: function(){
 		this.game.load.image('button', 'assets/images/button.png');
+		this.game.load.image('bg', 'assets/images/background.png');
+		this.game.load.image('gameOverlogo', 'assets/images/gameOverlogo.png');
+
+
 	},
 
 	create: function(){
-		this.game.stage.backgroundColor = "#FF0000";
+
+		//Imagem de fundo
+		this.bg = this.add.sprite(0, 0, 'bg');
+		this.bg.width = game_width; this.bg.height = game_height;
+
+		//Logotipo
+		this.logo = this.add.sprite(15,50, 'gameOverlogo');
+		this.logo.width = 400; this.logo.height = 200;
 		
-		this.gameOverText = game.add.text(50, 50, 'YOU DIED !!!');
 
-		this.gameOverText.align = 'center';
-		this.gameOverText.font = 'Arial';
-		this.gameOverText.fontSize = 50;
-		this.gameOverText.fill = '#fff';
-
-		this.button1 = this.add.button(75, 300, 'button', this.startGame, this);
+		this.button1 = this.add.button(75, 350, 'button', this.startGame, this);
 		this.button1.width = 250; this.button1.height = 50;
 
-		this.textButton1 = game.add.text(this.game.world.centerX, 328, 'Retry');
+		this.textButton1 = game.add.text(this.game.world.centerX, 378, 'Retry');
 		this.textButton1.anchor.set(0.5);
 		this.textButton1.align = 'center';
 		this.textButton1.font = 'Arial';

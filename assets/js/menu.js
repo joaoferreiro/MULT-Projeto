@@ -18,14 +18,14 @@ var Menu = {
 		this.bg.width = game_width; this.bg.height = game_height;
 
 		//Logotipo
-		this.logo = this.add.sprite(15,50, 'logo');
+		this.logo = this.add.sprite(15,65, 'logo');
 		this.logo.width = 400; this.logo.height = 200;
 
 		//Botao Play
-		this.button1 = this.add.button(75,300 , 'button', this.startGame, this);
+		this.button1 = this.add.button(75,350 , 'button', this.startGame, this);
 		this.button1.width = 250; this.button1.height = 50;
 		//Texto Play
-		this.textButton1 = game.add.text(this.game.world.centerX, 328, 'Play');
+		this.textButton1 = game.add.text(this.game.world.centerX, 378, 'Play');
 		this.textButton1.anchor.set(0.5);
 		this.textButton1.align = 'center';
 		this.textButton1.font = 'Arial';
@@ -33,10 +33,10 @@ var Menu = {
 		this.textButton1.fill = '#000';
 
 		//Botao Help
-		this.button2 = this.add.button(75, 375, 'button', this.startHelp, this);
+		this.button2 = this.add.button(75, 425, 'button', this.startHelp, this);
 		this.button2.width = 250; this.button2.height = 50;
 		//Texto Help
-		this.textButton2 = game.add.text(this.game.world.centerX, 403, 'Help');
+		this.textButton2 = game.add.text(this.game.world.centerX, 453, 'Help');
 		this.textButton2.anchor.set(0.5);
 		this.textButton2.align = 'center';
 		this.textButton2.font = 'Arial';
@@ -44,10 +44,10 @@ var Menu = {
 		this.textButton2.fill = '#000';
 		
 		//Botao About
-		this.button3 = this.add.button(75, 450, 'button', this.startAbout, this);
+		this.button3 = this.add.button(75, 500, 'button', this.startAbout, this);
 		this.button3.width = 250; this.button3.height = 50;
 		//Texto About
-		this.textButton3 = game.add.text(this.game.world.centerX, 478, 'About');
+		this.textButton3 = game.add.text(this.game.world.centerX, 528, 'About');
 		this.textButton3.anchor.set(0.5);
 		this.textButton3.align = 'center';
 		this.textButton3.font = 'Arial';
