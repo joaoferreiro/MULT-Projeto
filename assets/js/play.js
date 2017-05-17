@@ -5,7 +5,7 @@ var Play = {
 		//Carregamento de ficheiros necessarios
 		game.load.image('bg','assets/images/play_background.jpg');
 		game.load.image('block','assets/images/block.png');
-		game.load.spritesheet('player', 'assets/images/player1.png', 53, 65);
+		game.load.spritesheet('player', 'assets/images/player.png', 52.5, 69, 6);
 		game.load.spritesheet('food','assets/images/food.png', 35, 37);
 	},
 
@@ -72,52 +72,28 @@ var Play = {
 		if(this.HP <= 0 || this.HP >= 100)
 			this.gameOver();
 
-		//Comportamento dos cursores
+		//Comportamento com os cursores
 		if(this.cursors.up.isDown && this.player.body.wasTouching.down){
 			this.HP -= 4;
 			this.player.body.velocity.y = -850;
-			//this.player.frame = 2;
 		}
 		
 		if(this.cursors.left.isDown){
 			this.player.body.velocity.x = -500;
-			this.player.frame = 5;
-/*			if(this.HP < 25)
-			else if(this.HP >=25 && this.HP <=75)
-			else if(this.HP > 75)
-*/
+			this.player.frame = 3;
+
+			if(this.cursors.up.isDown)
+				this.player.frame = 5;
 		}
 
 		else if(this.cursors.right.isDown){
 			this.player.body.velocity.x = 500;
-			this.player.frame = 4;
-/*			if(this.HP < 25)
-			else if(this.HP >=25 && this.HP <=75)
-			else if(this.HP > 75)
-*/
+			this.player.frame = 2;
+
+			if(this.cursors.up.isDown)
+				this.player.frame = 4;
 		}
 
-		else if(this.cursors.up.isDown && this.cursors.right.isDown){
-/*			if(this.HP < 25)
-			else if(this.HP >=25 && this.HP <=75)
-			else if(this.HP > 75)
-*/			this.player.frame = 2;
-		}
-
-		else if(this.cursors.up.isDown && this.cursors.left.isDown){
-/*			if(this.HP < 25)
-			else if(this.HP >=25 && this.HP <=75)
-			else if(this.HP > 75)
-*/			this.player.frame = 3;
-		}
-
-/*		else if(!(this.cursors.up.isDown && this.cursors.right.isDown && this.cursors.left.isDown)){
-/*			if(this.HP < 25)
-			else if(this.HP >=25 && this.HP <=75)
-			else if(this.HP > 75)
-		this.player.frame = 0;
-		}
-*/
 		if(updateDelay % 30 == 0){
 			this.addFood();
 			this.HP -= 1;
