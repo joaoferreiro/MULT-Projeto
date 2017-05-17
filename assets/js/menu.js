@@ -27,21 +27,21 @@ var Menu = {
 		//Texto Play
 		this.textButton1 = game.add.text(this.game.world.centerX, 328, 'Play');
 		this.textButton1.anchor.set(0.5);
-	    this.textButton1.align = 'center';
-	    this.textButton1.font = 'Arial';
+		this.textButton1.align = 'center';
+		this.textButton1.font = 'Arial';
 		this.textButton1.fontSize = 25;
-	    this.textButton1.fill = '#000';
-	    
-	    //Botao Help
-	    this.button2 = this.add.button(75, 375, 'button', this.startHelp, this);
+		this.textButton1.fill = '#000';
+
+		//Botao Help
+		this.button2 = this.add.button(75, 375, 'button', this.startHelp, this);
 		this.button2.width = 250; this.button2.height = 50;
 		//Texto Help
 		this.textButton2 = game.add.text(this.game.world.centerX, 403, 'Help');
 		this.textButton2.anchor.set(0.5);
-	    this.textButton2.align = 'center';
-	    this.textButton2.font = 'Arial';
-	    this.textButton2.fontSize = 25;
-	    this.textButton2.fill = '#000';
+		this.textButton2.align = 'center';
+		this.textButton2.font = 'Arial';
+		this.textButton2.fontSize = 25;
+		this.textButton2.fill = '#000';
 		
 		//Botao About
 		this.button3 = this.add.button(75, 450, 'button', this.startAbout, this);
@@ -49,16 +49,17 @@ var Menu = {
 		//Texto About
 		this.textButton3 = game.add.text(this.game.world.centerX, 478, 'About');
 		this.textButton3.anchor.set(0.5);
-	    this.textButton3.align = 'center';
-	    this.textButton3.font = 'Arial';
-	    this.textButton3.fontSize = 25;
-	    this.textButton3.fill = '#000';
+		this.textButton3.align = 'center';
+		this.textButton3.font = 'Arial';
+		this.textButton3.fontSize = 25;
+		this.textButton3.fill = '#000';
 
 		this.button4 = this.add.button(350,15,'sound', this.handleSound, this);	
 		this.button4.width = 40; this.button4.height = 40;
-		this.music = game.add.audio('music');
-    	this.music.play();
-    	//this.music.stop();
+
+		//this.music = game.add.audio('music');
+		//this.music.play();
+		//this.music.stop();
 	},
 
 	startGame: function(){

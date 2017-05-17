@@ -1,4 +1,5 @@
-var bg, updateDelay = 0, player, blocks, cursors, foods, score, HP, textScore, textHP, index;
+var bg, updateDelay, player, blocks, cursors, foods, score, HP,
+	textScore, textHP, index, jumpSound, hitSound, gameoverSound;
 
 var Play = {
 	preload: function(){
@@ -7,11 +8,15 @@ var Play = {
 		this.game.load.image('block','assets/images/block.png');
 		this.game.load.spritesheet('player', 'assets/images/player.png', 52.5, 69, 6);
 		this.game.load.spritesheet('food','assets/images/food.png', 35, 37);
+		this.game.load.audio('hit', 'assets/audio/hit.mp3');
+		this.game.load.audio('jump', 'assets/audio/jump.mp3');
+		this.game.load.audio('gameover', 'assets/audio/gameover.mp3');
 	},
 
 	create: function(){
 		//Incializacao variaveis
 		this.cursors = this.game.input.keyboard.createCursorKeys();
+		this.updateDelay = 0;
 		this.score = 0;
 		this.HP = 50;
 		this.index = 1;
@@ -33,7 +38,7 @@ var Play = {
 		//Criacao do grupo foods
 		this.foods = this.game.add.group();
 		this.foods.enableBody = true;
-		this.foods.createMultiple(50, 'food', [0,1]);
+		this.foods.createMultiple(50, 'food', [1,0]);
 
 		//Primeiras plataformas
 		this.spacing = 200;
@@ -53,6 +58,9 @@ var Play = {
 	    this.textScore.fontSize = 25;
 	    this.textScore.fill = '#fff';
 
+		this.jumpSound = game.add.audio('jump');
+		this.hitSound = game.add.audio('hit');
+		this.gameoverSound = game.add.audio('gameover');
 	},
 
 	update: function() {
@@ -76,6 +84,7 @@ var Play = {
 		if(this.cursors.up.isDown && this.player.body.wasTouching.down){
 			this.HP -= 4;
 			this.player.body.velocity.y = -850;
+			this.jumpSound.play();
 		}
 		
 		if(this.cursors.left.isDown){
@@ -192,10 +201,11 @@ var Play = {
 		food.kill();
 		this.score++;
 		this.HP += 10;
+		this.hitSound.play();
 	},
 
-
 	gameOver: function(option){
+		this.gameoverSound.play();
 		if (this.score < 3)
 			this.game.state.start('Play');
 		else
