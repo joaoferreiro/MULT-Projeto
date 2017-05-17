@@ -57,8 +57,8 @@ var Menu = {
 		this.button4 = this.add.button(350,15,'sound', this.handleSound, this);	
 		this.button4.width = 40; this.button4.height = 40;
 
-		//this.music = game.add.audio('music');
-		//this.music.play();
+		this.music = game.add.audio('music');
+		this.music.play();
 		//this.music.stop();
 	},
 
