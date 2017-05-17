@@ -2,11 +2,10 @@ var gameOverText, button1, button2;
 
 var GameOver = {
 	preload: function(){
+		//Carregamento de ficheiros necessarios
 		this.game.load.image('button', 'assets/images/button.png');
 		this.game.load.image('bg', 'assets/images/background.png');
 		this.game.load.image('gameOverlogo', 'assets/images/gameOverlogo.png');
-
-
 	},
 
 	create: function(){
@@ -19,7 +18,7 @@ var GameOver = {
 		this.logo = this.add.sprite(15,50, 'gameOverlogo');
 		this.logo.width = 400; this.logo.height = 200;
 		
-
+		//Botao Retry
 		this.button1 = this.add.button(75, 350, 'button', this.startGame, this);
 		this.button1.width = 250; this.button1.height = 50;
 
@@ -30,6 +29,7 @@ var GameOver = {
 		this.textButton1.fontSize = 25;
 		this.textButton1.fill = '#000';
 
+		//Botao Menu
 		this.button2 = this.add.button(75, 475, 'button', this.startMenu, this);
 		this.button2.width = 250; this.button2.height = 50;
 

@@ -59,6 +59,7 @@ var Play = {
 	    this.textScore.fontSize = 25;
 	    this.textScore.fill = '#fff';
 
+	    //Criacao dos sons
 		this.jumpSound = game.add.audio('jump');
 		this.hitSound = game.add.audio('hit');
 		this.gameoverSound = game.add.audio('gameover');
@@ -213,6 +214,7 @@ var Play = {
 	},
 
 	incrementScore: function(){
+		//Incrementa o score
 		this.score++;
 	},
 

@@ -7,7 +7,7 @@ var Menu = {
 		this.game.load.image('bg', 'assets/images/background.jpg');
 		this.game.load.image('logo', 'assets/images/logo.png');
 		this.game.load.image('button', 'assets/images/button.png');
-		this.game.load.image('sound', 'assets/images/sound.png')
+		this.game.load.image('sound', 'assets/images/sound.png');
 		this.game.load.image('bar', 'assets/images/bar.png');
 		this.game.load.audio('music', 'assets/audio/music.mp3');
 	},
@@ -44,7 +44,7 @@ var Menu = {
 		this.textButton2.fill = '#000';
 		
 		//Botao About
-		this.button3 = this.add.button(75, 500, 'button', this.startAbout, this);
+		this.button3 = this.addif(this.game.sound.mute).button(75, 500, 'button', this.startAbout, this);
 		this.button3.width = 250; this.button3.height = 50;
 		//Texto About
 		this.textButton3 = game.add.text(this.game.world.centerX, 528, 'About');
@@ -75,7 +75,7 @@ var Menu = {
 	},
 
 	handleSound: function(){
-		if(this.game.sound.mute)
+		
 			this.game.sound.mute = false;
 		else
 			this.game.sound.mute = true;
